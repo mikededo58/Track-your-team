@@ -1,28 +1,7 @@
 const router = require("express").Router();
-const { Match, Team, League, TeamMatch } = require("../../models");
-const { withGuard, apiGuard } = require("../../utils/authGuard");
+const { Match, TeamMatch } = require("../../models");
+const { apiGuard } = require("../../utils/authGuard");
 
-// router.get("/",  withAuth, async (req, res) => {
-//   try {
-//     const gameData = await Match.findAll();
-//     res.status(200).json(gameData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// router.get("/:match_id", withAuth, async (req, res) => {
-//   try {
-//     const gameData = await Match.findByPk(req.params.match_id);
-//     if (!gameData) {
-//       res.status(404).json({ message: "Match found with that id" });
-//       return;
-//     }
-//     res.status(200).json(gameData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 
 router.post("/", apiGuard, async (req, res) => {
   try {

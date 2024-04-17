@@ -1,0 +1,14 @@
+<div class="team">
+  {{#each team}}
+  <article class="card">
+    <div class="card-header flex-row justify-space-between">
+      <h2>
+        <a href="/team/{{id}}">{{team-name}} {{games_played}} {{games_won}}</a>
+      </h2>
+    </div>
+    <div class="card-body">
+      {{body}}
+    </div>
+  </article>
+  {{/each}}
+</div>

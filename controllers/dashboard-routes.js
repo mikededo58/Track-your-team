@@ -1,23 +1,10 @@
 const router = require("express").Router();
-const { Match, Team, League, TeamMatch, User } = require("../models");
-const { withGuard, withoutGuard } = require("../utils/authGuard");
+const { Match, Team, TeamMatch, } = require("../models");
+const { withGuard,} = require("../utils/authGuard");
 
-router.get("/", (req, res) => {
-  try {
-    if (req.session.logged_in) {
-      res.redirect("/dashboard");
-      console.log(`Hit the if statement`);
-      return;
-    }
 
-    res.render("signIn");
-    // console.log(`Hit the login`);
-  } catch (err) {
-    res.status(500).json({ message: `Hit the error` });
-  }
-});
 
-router.get("/dashboard",  async (req, res) => {
+router.get("/", withGuard, async (req, res) => {
   try {
     const teamData = await Team.findAll({
       include: [{ model: Match, through: TeamMatch }],
@@ -32,50 +19,31 @@ router.get("/dashboard",  async (req, res) => {
   }
 });
 
-router.post("/dashboard", async (req, res) => {
-  try {
-    const newTeam = await Team.create({
-      ...req.body,
-      user_id: req.session.user_id,
-    });
-    res.status(200).json(newTeam);
-  } catch (err) {
-    res.status(400).json(err);
-  }
+router.get('/new', withGuard, (req, res) => {
+  res.render('newTeam', {
+    dashboard: true,
+    loggedIn: req.session.logged_in,
+  });
 });
 
-router.put("/:id", async (req, res) => {
-  try {
-    const [affectedRows] = await Post.update(req.body, {
-      where: {
-        id: req.params.id,
-      },
-    });
 
-    if (affectedRows > 0) {
-      res.status(200).end();
-    } else {
-      res.status(404).end();
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
-router.get("/team/:id", withGuard, async (req, res) => {
+router.get("/edit/:id", withGuard, async (req, res) => {
   try {
     const teamData = await Team.findByPk(req.params.team_id, {
       include: [{ model: Match, through: TeamMatch }],
     });
 
-    const teamsID = teamData.get({ plain: true });
-    res.render("teams", {
-      teamsID,
+    const team = teamData.get({ plain: true });
+    res.render("editTeam", {
+      dashboard: true,
+      team,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
 
 module.exports = router;
