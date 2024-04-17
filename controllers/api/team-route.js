@@ -14,7 +14,7 @@ router.post("/", apiGuard, async (req, res) => {
     res.status(400).json(err);
   }
 });
-router.put("/:id", async (req, res) => {
+router.put("/:id", apiGuard, async (req, res) => {
   try {
     const [affectedRows] = await Team.update(req.body, {
       where: {

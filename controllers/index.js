@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const apiRoutes = require("./api");
-const dashboardRoutes = require("./dashboard-routes");
-const homeRoutes = require('./homeRoutes');
+const teamRoutes = require("./teamRoutes");
+const matchRoutes = require('./matchRoutes');
 
-router.use('/', homeRoutes);
-router.use("/", dashboardRoutes);
+router.use('/', teamRoutes);
+router.use("/match", matchRoutes);
 router.use("/api", apiRoutes);
 
 router.use((req, res) => {
