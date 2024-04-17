@@ -43,5 +43,12 @@ router.get("/edit/:id", withGuard, async (req, res) => {
   }
 });
 
+router.get('/league/new', withGuard, (req, res) => {
+  res.render('newLeague', {
+    dashboard: true,
+    loggedIn: req.session.logged_in,
+  });
+});
+
 
 module.exports = router;

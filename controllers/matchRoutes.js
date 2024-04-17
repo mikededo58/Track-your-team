@@ -2,40 +2,27 @@ const router = require("express").Router();
 const { Match, Team, League, TeamMatch, User } = require("../models");
 const { withGuard, withoutGuard } = require("../utils/authGuard");
 
-// router.get("/", async (req, res) => {
-//   try {
-//     const teamData = await Team.findAll({
-//       include: [{ model: Match, through: TeamMatch }],
-//     });
-//     const teams = teamData.map((team) => team.get({ plain: true }));
-//     res.render("home", {
-//       teams,
-//       logged_in: req.session.logged_in,
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get("/", async (req, res) => {
+  try {
+    const matchData = await Match.findAll({
+      include: [{ model: Team, through: TeamMatch }],
+    });
+    const matches = matchData.map((match) => match.get({ plain: true }));
+    res.render("match", {
+      matches,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-// router.get("/team/:id", withGuard, async (req, res) => {
-//   try {
-//     const teamData = await Team.findByPk(req.params.team_id, {
-//       include: [{ model: Match, through: TeamMatch }],
-//     });
-//     if (teamData) {
-//       const team = teamData.get({ plain: true });
-
-//       res.render("team", {
-//         team,
-//         logged_in: req.session.logged_in,
-//       });
-//     } else {
-//       res.status(404).end();
-//     }
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get('/match/new', withGuard, (req, res) => {
+  res.render('newMatch', {
+    dashboard: true,
+    loggedIn: req.session.logged_in,
+  });
+});
 
 router.get('/login', withoutGuard, (req, res) => {
     try {
