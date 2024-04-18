@@ -1,5 +1,5 @@
 {
-  "name": "run-your-league",
+  "name": "track-your-team",
   "version": "1.0.0",
   "description": "An application for managing intramural, youth, or personal leagues",
   "main": "server.js",
@@ -11,14 +11,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Node-2-Nowhere/Run-Your-Team"
+    "url": "https://github.com/mikededo58/Track-your-team"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^2.0.3"
-  },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "connect-session-sequelize": "^7.1.7",
@@ -29,5 +26,11 @@
     "handlebars": "^4.7.6",
     "pg": "^8.11.3",
     "sequelize": "^6.37.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
+    "nodemon": "^2.0.3",
+    "prettier": "^2.1.2"
   }
 }

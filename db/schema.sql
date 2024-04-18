@@ -1,5 +1,5 @@
 -- DROP DATABASE
-DROP DATABASE IF EXISTS leaguetracker_db;
+DROP DATABASE IF EXISTS teamtracker_db;
 
 -- CREATE DATABASE
-CREATE DATABASE leaguetracker_db;
+CREATE DATABASE teamtracker_db;

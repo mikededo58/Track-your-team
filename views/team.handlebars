@@ -1,14 +1,17 @@
-<div class="team">
-  {{#each team}}
-  <article class="card">
-    <div class="card-header flex-row justify-space-between">
-      <h2>
-        <a href="/team/{{id}}">{{team-name}} {{games_played}} {{games_won}}</a>
-      </h2>
-    </div>
-    <div class="card-body">
-      {{body}}
-    </div>
-  </article>
+<div class='teams'>
+  {{#each teams}}
+    <article class='card'>
+      <div class='card-header flex-row justify-space-between'>
+        <h2> 
+          {{id}}
+          {{team_name}}
+          {{games_played}}
+          {{games_won}}
+        </h2>
+      </div>
+      <div class='card-body'>
+        {{body}}
+      </div>
+    </article>
   {{/each}}
 </div>

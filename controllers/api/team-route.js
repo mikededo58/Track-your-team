@@ -1,9 +1,9 @@
-const router = require("express").Router();
-const { Team, } = require("../../models");
-const { apiGuard } = require("../../utils/authGuard");
+const router = require('express').Router();
+const { Team } = require('../../models');
+const { apiGuard } = require('../../utils/authGuard');
 
-router.post("/", apiGuard, async (req, res) => {
-  const body = req.body
+router.post('/', async (req, res) => {
+  const body = req.body;
   try {
     const newTeam = await Team.create({
       ...body,
@@ -14,7 +14,7 @@ router.post("/", apiGuard, async (req, res) => {
     res.status(400).json(err);
   }
 });
-router.put("/:id", apiGuard, async (req, res) => {
+router.put('/:id', apiGuard, async (req, res) => {
   try {
     const [affectedRows] = await Team.update(req.body, {
       where: {

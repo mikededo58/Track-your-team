@@ -8,7 +8,7 @@ const editFormHandler = async function (event) {
 
   const gamesPlayed = document.querySelector('input[name="team-gamesPlayed"]').value;
 
-  await fetch(`/api/tea,=m/${teamId}`, {
+  await fetch(`/api/team/${teamId}`, {
     method: 'PUT',
     body: JSON.stringify({
       name,
@@ -20,7 +20,7 @@ const editFormHandler = async function (event) {
     },
   });
 
-  document.location.replace('/dashboard');
+  document.location.replace('/');
 };
 
 const deleteClickHandler = async function () {
@@ -28,7 +28,7 @@ const deleteClickHandler = async function () {
     method: 'DELETE',
   });
 
-  document.location.replace('/dashboard');
+  document.location.replace('/');
 };
 
 document

@@ -1,49 +1,53 @@
-<html lang='en'>
+<html lang="en">
 
   <head>
-    <meta charset='utf-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Run Your League</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap"
+      rel="stylesheet"
+    />
 
-    <link rel='stylesheet' href='/css/style.css' />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
 
-  <body class='flex-column min-100-vh'>
-    <nav class='navbar'>
-      <ul class='flex-row'>
-        <li class='li-inline nav-item'><a href='/'>Team</a></li>
-        <li class='li-inline nav-item'><a href='/match'>Match</a></li>
+  <body class="flex-column min-100-vh">
+    <nav class="navbar">
+      <ul class="flex-row">
+        <li class="li-inline nav-item"><a href="/">League</a></li>
+        <li class="li-inline nav-item"><a href="/match">Matches</a></li>
         {{#if loggedIn}}
-          <li class='li-inline nav-item'><a href='#' id='logout'>Logout</a></li>
+          <li class="li-inline nav-item"><a href="#" id="logout">Logout</a></li>
         {{else}}
-          <li class='li-inline nav-item'><a href='/login'>Login</a></li>
+          <li class="li-inline nav-item"><a href="/login">Login</a></li>
         {{/if}}
       </ul>
     </nav>
-    <header class='hero'>
+    <header class="hero">
       {{#if match}}
-        <h1 class='app-title'><a href='/match'>Match Tracker</a></h1>
+        <h1 class="app-title"><a href="/match">Match Tracker</a></h1>
       {{else}}
-        <h1 class='app-title'><a href='/'>The League Tracker</a></h1>
+        <h1 class="app-title"><a href="/">The League Tracker</a></h1>
       {{/if}}
     </header>
 
-    <main class='col-auto'>
+    <main class="col-auto">
       {{{body}}}
     </main>
 
     {{#if match}}
-      <footer class='footer flex-row justify-center'>
-        <a href='/match/new'>➕ Match Update</a>
+      <footer class="footer flex-row justify-center">
+        <a href="/match/new">➕ Match Update</a>
       </footer>
     {{else}}
-      <footer class='flex-row justify-center'>
-        &copy; Mike  DeDomenic
+      <footer class="flex-row justify-center">
+       <a href="/team/new">➕ New Team</a>
       </footer>
     {{/if}}
 
     {{#if loggedIn}}
-      <script src='/js/logout.js'></script>
+      <script src="/js/logout.js"></script>
     {{/if}}
   </body>
 

@@ -1,10 +1,14 @@
-<div class="match list-group">
-  {{#each match}}
-  <a class="list-item flex-row justify-space-between" href="/dashboard/edit/{{id}}">
-    <span>{{id}}</span>
-    <span>{{match-away-team-id}}</span>
-    <span>{{match-home-team-id}}</span>
-    <span>{{Winner}}</span>
-  </a>
+<div class='match list-group'>
+  {{#each matches}}
+    <a
+      class='list-item flex-row justify-space-between'
+      href='/match/edit/{{id}}'
+    >
+      <span>{{id}}</span>
+      <span>{{match_date}}</span>
+      <span>{{away_team_name}}</span>
+      <span>{{home_team_name}}</span>
+      <span>{{Winner}}</span>
+    </a>
   {{/each}}
 </div>
