@@ -8,19 +8,21 @@ const loginFormHandler = async function (event) {
     .querySelector('#password-input-login')
     .value.trim();
 
-  const response = await fetch('/api/users/login', {
-    method: 'POST',
-    body: JSON.stringify({
-      username: usernameEl,
-      password: passwordEl,
-    }),
-    headers: { 'Content-Type': 'application/json' },
-  });
+  if (usernameEl && passwordEl) {
+    const response = await fetch('/api/user/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: usernameEl,
+        password: passwordEl,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-  if (response.ok) {
-    document.location.replace('/');
-  } else {
-    alert('Failed to login');
+    if (response.ok) {
+      document.location.replace('/');
+    } else {
+      alert('Failed to log in.');
+    }
   }
 };
 

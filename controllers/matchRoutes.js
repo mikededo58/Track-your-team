@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { Match, Team, League, TeamMatch, User } = require("../models");
-const { withGuard, withoutGuard } = require("../utils/authGuard");
+
 
 router.get("/", async (req, res) => {
   try {
@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get('/match/new', withGuard, (req, res) => {
+router.get('/match/new', (req, res) => {
   res.render('newMatch', {
     dashboard: true,
     loggedIn: req.session.logged_in,

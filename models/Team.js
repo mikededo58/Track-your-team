@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
 class Team extends Model {}
 
@@ -18,20 +18,24 @@ Team.init(
     league_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: { model: "leagues", key: "id" },
+      references: { model: 'leagues', key: 'id' },
     },
     games_played: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    games_won:{
+    games_won: {
       type: DataTypes.INTEGER,
       allowNull: true,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: { model: 'User', key: 'id' },
     },
   },
   {
     sequelize,
-    modelName: "team",
+    modelName: 'team',
     underscored: true,
   }
 );

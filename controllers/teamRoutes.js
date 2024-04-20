@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { Match, Team, TeamMatch } = require('../models');
-const { withGuard, withoutGuard } = require('../utils/authGuard');
 
 router.get('/', async (req, res) => {
   try {
@@ -21,8 +20,16 @@ router.get('/', async (req, res) => {
 router.get('/team/new', (req, res) => {
   res.render('newTeam', {
     dashboard: true,
-    loggedIn: req.session.logged_in,
+    // loggedIn: req.session.logged_in,
   });
+});
+
+router.get('/team/update', (req, res) => {
+  try {
+    res.render('editTeam');
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // router.get("/edit/:id", withGuard, async (req, res) => {
@@ -49,7 +56,7 @@ router.get('/team/new', (req, res) => {
 //   });
 // });
 
-router.get('/login', withoutGuard, (req, res) => {
+router.get('/login', (req, res) => {
   try {
     res.render('login');
   } catch (err) {
@@ -57,7 +64,7 @@ router.get('/login', withoutGuard, (req, res) => {
   }
 });
 
-router.get('/signup', withoutGuard, (req, res) => {
+router.get('/signup', (req, res) => {
   try {
     res.render('signup');
   } catch (err) {

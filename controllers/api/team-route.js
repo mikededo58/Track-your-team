@@ -2,19 +2,21 @@ const router = require('express').Router();
 const { Team } = require('../../models');
 const { apiGuard } = require('../../utils/authGuard');
 
-router.post('/', async (req, res) => {
-  const body = req.body;
+router.post('/', apiGuard, async (req, res) => {
   try {
     const newTeam = await Team.create({
-      ...body,
-      user_id: req.session.user_id,
+      userId: req.session.user_id,
+      team_name: req.body.team_name,
+      league_id: parseInt(req.body.league_id),
     });
+
     res.status(200).json(newTeam);
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
-router.put('/:id', apiGuard, async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const [affectedRows] = await Team.update(req.body, {
       where: {
@@ -32,7 +34,7 @@ router.put('/:id', apiGuard, async (req, res) => {
   }
 });
 
-router.delete('/:id', apiGuard, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const [affectedRows] = Team.destroy({
       where: {

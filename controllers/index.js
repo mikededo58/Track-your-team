@@ -4,8 +4,9 @@ const teamRoutes = require("./teamRoutes");
 const matchRoutes = require('./matchRoutes');
 
 router.use('/', teamRoutes);
-router.use("/match", matchRoutes);
 router.use("/api", apiRoutes);
+router.use("/match", matchRoutes);
+
 
 router.use((req, res) => {
   res.send("<h1>Wrong Route!</h1>");

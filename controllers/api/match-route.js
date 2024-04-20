@@ -1,15 +1,12 @@
 const router = require('express').Router();
 const { Match, TeamMatch } = require('../../models');
-const { apiGuard } = require('../../utils/authGuard');
 
-router.post('/', apiGuard, async (req, res) => {
+router.post('/', async (req, res) => {
   const body = req.body;
 
   try {
     const newMatch = await Match.create({
-      ...body,
-      userId: req.session.user_id,
-    });
+      ...body,});
     res.json(newMatch);
   } catch (err) {
     res.status(500).json(err);
