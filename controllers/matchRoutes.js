@@ -17,12 +17,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get('/match/new', (req, res) => {
-  res.render('newMatch', {
-    // dashboard: true,
-    // loggedIn: req.session.logged_in,
-  });
-});
+
 
 
 

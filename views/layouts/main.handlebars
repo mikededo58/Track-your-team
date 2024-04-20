@@ -17,6 +17,8 @@
       <ul class='flex-row'>
         <li class='li-inline nav-item'><a href='/'>League</a></li>
         <li class='li-inline nav-item'><a href='/match'>Matches</a></li>
+        <li class='li-inline nav-item'><a href='/match/new'> New Match</a></li>
+        <li class='li-inline nav-item'><a href='/team/new'>New Team</a></li>
 
         {{#if loggedIn}}
           <li class='li-inline nav-item'><a href='#' id='logout'>Logout</a></li>
@@ -37,15 +39,9 @@
       {{{body}}}
     </main>
 
-    {{#if match}}
-      <footer class='footer flex-row justify-center'>
-        <a href='/match/new'>➕ Match Update</a>
-      </footer>
-    {{else}}
-      <footer class='flex-row justify-center'>
-        <a href='/team/new'>➕ New Team</a>
-      </footer>
-    {{/if}}
+    <footer>
+      &copy; Mike DeDomenic
+    </footer>
 
     {{#if loggedIn}}
       <script src='/js/logout.js'></script>

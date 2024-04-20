@@ -59,6 +59,14 @@ router.get('/team/:id', (req, res) => {
 //   });
 // });
 
+router.get('/match/new', (req, res) => {
+  try {
+    res.render('newMatch');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/login', (req, res) => {
   try {
     res.render('login');

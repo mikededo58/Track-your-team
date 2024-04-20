@@ -1,28 +1,42 @@
 const newMatchFormHandler = async function (event) {
-    event.preventDefault();
-  
-    const date = document.querySelector('input[name="match-date"]').value;
+  event.preventDefault();
 
-    const homeTeam = document.querySelector('input[name="match-home-team-id"]').value;
+  const date = document.querySelector('input[name="match-date"]').value;
 
-    const awayTeam = document.querySelector('input[name="match-away-team-id"]').value;
+  const home_team_name = document.querySelector(
+    'input[name="match-home-team-name"]'
+  ).value;
 
-    const winner = document.querySelector('input[name="match-winner"]').value;
-  
-    await fetch(`/api/league`, {
-      method: 'POST',
-      body: JSON.stringify({
-        date,
-        homeTeam,
-        awayTeam,
-        winner
-      }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-  
-    document.location.replace('/dashboard');
-  };
-  
-  document
-    .querySelector('#new-match-form')
-    .addEventListener('submit', newLeagueFormHandler);
+  const away_team_name = document.querySelector(
+    'input[name="match-away-team-name"]'
+  ).value;
+
+  const home_team_id = document.querySelector(
+    'input[name="match-away-team-id"]'
+  ).value;
+
+  const away_team_id = document.querySelector(
+    'input[name="match-away-team-id"]'
+  ).value;
+
+  const winner = document.querySelector('input[name="match-winner"]').value;
+
+  await fetch(`/api/match`, {
+    method: 'POST',
+    body: JSON.stringify({
+      match_date: date,
+      home_team_id: home_team_id,
+      away_team_id: away_team_id,
+      home_team_name: home_team_name,
+      away_team_name: away_team_name,
+      winner: winner,
+    }),
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  // document.location.replace('/');
+};
+
+document
+  .querySelector('#new-match-form')
+  .addEventListener('submit', newMatchFormHandler);

@@ -2,14 +2,23 @@ const router = require('express').Router();
 const { Match, TeamMatch } = require('../../models');
 
 router.post('/', async (req, res) => {
-  const body = req.body;
-
   try {
     const newMatch = await Match.create({
-      ...body,});
-    res.json(newMatch);
+      match_date: req.body.date,
+      home_team_id: parseInt(req.body.home_team_id),
+      away_team_id: parseInt(req.body.away_team_id),
+      home_team_name: req.body.home_team_name,
+      away_team_name: req.body.away_team_name,
+      winner: parseInt(req.body.winner),
+    });
+    console.log(newMatch);
+
+    // console.log('-----------------------------');
+
+    res.status(200).json(newMatch);
   } catch (err) {
-    res.status(500).json(err);
+    // console.log(newMatch);
+    res.status(400).json(err);
   }
 });
 
