@@ -1,37 +1,40 @@
-<div class="team card">
-  <div class="card-header">
+<div class='team card'>
+  <div class='card-header'>
     <h2>Edit Post</h2>
   </div>
-  <form id="edit-team-form" class="card-body">
-    <input type="hidden" name="team-id" value="{{team.id}}" />
+  <form id='edit-team-form' class='card-body'>
+    <input type='hidden' name='team-id' value='{{team.id}}' />
 
-    <label class="form-label" for="team-name">Team Name</label>
+    {{!-- <label class='form-label' for='team-'>Team ID</label>
+    <input type='text' name='team-ID' value='{{team.ID}}' class='form-input' /> --}}
+
+    {{!-- <label class='form-label' for='team-name'>Team Name</label>
     <input
-      type="text"
-      name="team-name"
-      value="{{team.team_name}}"
-      class="form-input"
+      type='text'
+      name='team-name'
+      value='{{team.team_name}}'
+      class='form-input'
+    /> --}}
+
+    <label class='form-label' for='team-gamesWon'>Games Won</label>
+    <input
+      type='text'
+      name='team-gamesWon'
+      value='{{team.games_won}}'
+      class='form-input'
+    />
+    <label class='form-label' for='team-gamesPlayed'>Games Played</label>
+    <input
+      type='text'
+      name='team-gamesPlayed'
+      value='{{team.games_played}}'
+      class='form-input'
     />
 
-    <label class="form-label" for="team-">Games Won</label>
-    <input
-      type="text"
-      name="team-gamesWon"
-      value="{{team.games_won}}"
-      class="form-input"
-    />
-<label class="form-label" for="team-">Games Played</label>
-    <input
-      type="text"
-      name="team-gamesPlayed"
-      value="{{team.games_played}}"
-      class="form-input"
-    />
+    <button type='submit' class='btn'>Update</button>
 
-    <button type="submit" class="btn">Update</button>
-
-    <button type="button" id="delete-btn" class="btn">Delete</button>
+    {{! <button type='button' id='delete-btn' class='btn'>Delete</button> }}
   </form>
 </div>
 
-<script src="/js/editTeam.js"></script>
+<script src='/js/editTeam.js'></script>

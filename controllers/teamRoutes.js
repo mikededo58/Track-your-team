@@ -18,13 +18,15 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/team/new', (req, res) => {
-  res.render('newTeam', {
-    dashboard: true,
-    // loggedIn: req.session.logged_in,
-  });
+  try {
+    res.render('newTeam');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+  // loggedIn: req.session.logged_in,
 });
 
-router.get('/team/update', (req, res) => {
+router.get('/team/:id', (req, res) => {
   try {
     res.render('editTeam');
   } catch (err) {
@@ -32,18 +34,19 @@ router.get('/team/update', (req, res) => {
   }
 });
 
-// router.get("/edit/:id", withGuard, async (req, res) => {
+// router.get('/team/:id', async (req, res) => {
 //   try {
 //     const teamData = await Team.findByPk(req.params.team_id, {
 //       include: [{ model: Match, through: TeamMatch }],
 //     });
 
-//     const team = teamData.get({ plain: true });
-//     res.render("editTeam", {
-//       dashboard: true,
-//       team,
-//       logged_in: req.session.logged_in,
-//     });
+//     if (teamData) {
+//       const team = teamData.get({ plain: true });
+
+//       res.render('team', { team });
+//     } else {
+//       res.status(404).end();
+//     }
 //   } catch (err) {
 //     res.status(500).json(err);
 //   }
