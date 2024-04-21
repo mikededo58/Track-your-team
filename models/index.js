@@ -22,9 +22,9 @@ Match.belongsToMany(Team, {
   through: TeamMatch,
   foreignKey: 'match_id',
 });
-Team.belongsTo(User);
+League.belongsTo(User);
 
-User.hasMany(Team);
+User.hasMany(League);
 
 // Team.belongsToMany(User, {
 //   foreignKey: 'user_id',
