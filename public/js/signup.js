@@ -18,12 +18,12 @@ const signupFormHandler = async function (event) {
       headers: { 'Content-Type': 'application/json' },
     });
 
-    // if (response.ok) {
-    //   document.location.replace('/');
+    if (response.ok) {
+      document.location.replace('/');
     } else {
       alert('Failed to sign up.');
     }
-  // }
+  }
 };
 
 document

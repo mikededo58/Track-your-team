@@ -17,10 +17,11 @@
       <ul class='flex-row'>
         <li class='li-inline nav-item'><a href='/'>League</a></li>
         <li class='li-inline nav-item'><a href='/match'>Matches</a></li>
-        <li class='li-inline nav-item'><a href='/match/new'> New Match</a></li>
-        <li class='li-inline nav-item'><a href='/team/new'>New Team</a></li>
 
-        {{#if loggedIn}}
+        {{#if logged_in}}
+          <li class='li-inline nav-item'><a href='/match/new'>
+              New Match</a></li>
+          <li class='li-inline nav-item'><a href='/team/new'>New Team</a></li>
           <li class='li-inline nav-item'><a href='#' id='logout'>Logout</a></li>
         {{else}}
           <li class='li-inline nav-item'><a href='/login'>Login</a></li>
@@ -43,7 +44,7 @@
       &copy; Mike DeDomenic
     </footer>
 
-    {{#if loggedIn}}
+    {{#if logged_in}}
       <script src='/js/logout.js'></script>
     {{/if}}
   </body>

@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { Match, TeamMatch } = require('../../models');
+const { apiGuard } = require('../../utils/authGuard');
 
-router.post('/', async (req, res) => {
+router.post('/', apiGuard, async (req, res) => {
   try {
     const newMatch = await Match.create({
       match_date: req.body.date,
@@ -11,13 +12,8 @@ router.post('/', async (req, res) => {
       away_team_name: req.body.away_team_name,
       winner: parseInt(req.body.winner),
     });
-    console.log(newMatch);
-
-    // console.log('-----------------------------');
-
     res.status(200).json(newMatch);
   } catch (err) {
-    // console.log(newMatch);
     res.status(400).json(err);
   }
 });

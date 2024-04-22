@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const { Team } = require('../../models');
-// const { apiGuard } = require('../../utils/authGuard');
+const { apiGuard } = require('../../utils/authGuard');
 
-router.post('/', async (req, res) => {
+router.post('/', apiGuard, async (req, res) => {
   try {
     const newTeam = await Team.create({
-      // userId: req.session.user_id,
       team_name: req.body.team_name,
       league_id: parseInt(req.body.league_id),
     });
@@ -18,7 +17,7 @@ router.post('/', async (req, res) => {
 });
 
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', apiGuard, async (req, res) => {
   try {
     const updatedTeam = await Team.update(req.body, {
       where: {
