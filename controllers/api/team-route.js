@@ -16,6 +16,8 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+
 router.put('/:id', async (req, res) => {
   try {
     const updatedTeam = await Team.update(req.body, {

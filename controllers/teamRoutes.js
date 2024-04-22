@@ -26,31 +26,23 @@ router.get('/team/new', (req, res) => {
   // loggedIn: req.session.logged_in,
 });
 
-router.get('/team/:id', (req, res) => {
+
+router.get('/team/:id', async (req, res) => {
   try {
-    res.render('editTeam');
+    const teamData = await Team.findByPk(req.params.id, {
+      include: [{ model: Match, through: TeamMatch }],
+    });
+    if (teamData) {
+      const team = teamData.get({ plain: true });
+
+      res.render('editTeam', { team });
+    } else {
+      res.status(404).end();
+    }
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-// router.get('/team/:id', async (req, res) => {
-//   try {
-//     const teamData = await Team.findByPk(req.params.team_id, {
-//       include: [{ model: Match, through: TeamMatch }],
-//     });
-
-//     if (teamData) {
-//       const team = teamData.get({ plain: true });
-
-//       res.render('team', { team });
-//     } else {
-//       res.status(404).end();
-//     }
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 
 // router.get('/league/new', withGuard, (req, res) => {
 //   res.render('newLeague', {
